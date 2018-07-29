@@ -191,6 +191,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Migrations\201807291940413_InitialModel.cs" />
+    <Compile Include="Migrations\201807291940413_InitialModel.Designer.cs">
+      <DependentUpon>201807291940413_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292022489_AddIsSubscribedToCustomer.cs" />
+    <Compile Include="Migrations\201807292022489_AddIsSubscribedToCustomer.Designer.cs">
+      <DependentUpon>201807292022489_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292025572_AddMembershipType.cs" />
+    <Compile Include="Migrations\201807292025572_AddMembershipType.Designer.cs">
+      <DependentUpon>201807292025572_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -320,6 +334,17 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807291940413_InitialModel.resx">
+      <DependentUpon>201807291940413_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292022489_AddIsSubscribedToCustomer.resx">
+      <DependentUpon>201807292022489_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292025572_AddMembershipType.resx">
+      <DependentUpon>201807292025572_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
