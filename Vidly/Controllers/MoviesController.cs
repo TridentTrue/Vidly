@@ -8,14 +8,8 @@ using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
-	public class MoviesController : Controller
+	public class MoviesController : BaseController
 	{
-		public List<Movie> movieList = new List<Movie>()
-		{
-			new Movie { Id = 1, Name = "Shrek" },
-			new Movie { Id = 2, Name = "Wall-E" },
-		};
-
 		// GET: Movies/Random
 		public ActionResult Random()
 		{
@@ -54,7 +48,7 @@ namespace Vidly.Controllers
 			if (string.IsNullOrWhiteSpace(sortBy))
 				sortBy = "Name";
 
-			return View(movieList);
+			return View(db.Movies.ToList());
 		}
 	}
 }
