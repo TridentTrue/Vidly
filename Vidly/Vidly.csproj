@@ -220,7 +220,28 @@
     <Compile Include="Migrations\201807292102494_UpdateMembershipTypeNames.Designer.cs">
       <DependentUpon>201807292102494_UpdateMembershipTypeNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807292110267_AddDOBToCustomer.cs" />
+    <Compile Include="Migrations\201807292110267_AddDOBToCustomer.Designer.cs">
+      <DependentUpon>201807292110267_AddDOBToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292120103_AddGenreToMovieClass.cs" />
+    <Compile Include="Migrations\201807292120103_AddGenreToMovieClass.Designer.cs">
+      <DependentUpon>201807292120103_AddGenreToMovieClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292126098_RemoveErroneousPropertyFromMovie.cs" />
+    <Compile Include="Migrations\201807292126098_RemoveErroneousPropertyFromMovie.Designer.cs">
+      <DependentUpon>201807292126098_RemoveErroneousPropertyFromMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292126413_PopulateGenre.cs" />
+    <Compile Include="Migrations\201807292126413_PopulateGenre.Designer.cs">
+      <DependentUpon>201807292126413_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807292133446_AdditionalMovieProperties.cs" />
+    <Compile Include="Migrations\201807292133446_AdditionalMovieProperties.Designer.cs">
+      <DependentUpon>201807292133446_AdditionalMovieProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
     <Content Include="Content\bootstrap-lumen.css" />
@@ -337,6 +358,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +395,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807292102494_UpdateMembershipTypeNames.resx">
       <DependentUpon>201807292102494_UpdateMembershipTypeNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292110267_AddDOBToCustomer.resx">
+      <DependentUpon>201807292110267_AddDOBToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292120103_AddGenreToMovieClass.resx">
+      <DependentUpon>201807292120103_AddGenreToMovieClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292126098_RemoveErroneousPropertyFromMovie.resx">
+      <DependentUpon>201807292126098_RemoveErroneousPropertyFromMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292126413_PopulateGenre.resx">
+      <DependentUpon>201807292126413_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292133446_AdditionalMovieProperties.resx">
+      <DependentUpon>201807292133446_AdditionalMovieProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

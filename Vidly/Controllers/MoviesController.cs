@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -48,7 +49,21 @@ namespace Vidly.Controllers
 			if (string.IsNullOrWhiteSpace(sortBy))
 				sortBy = "Name";
 
-			return View(db.Movies.ToList());
+			return View(db.Movies.Include(m => m.Genre).ToList());
+		}
+
+		[Route("movies/details/{movieId?}")]
+		public ActionResult Details(int? movieId)
+		{
+			if (movieId == null)
+				return Content("Please include a movieId in the URL");
+
+			var movie = db.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == movieId);
+
+			if (movie == null)
+				return HttpNotFound();
+
+			return View(movie);
 		}
 	}
 }

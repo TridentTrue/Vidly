@@ -22,7 +22,7 @@ namespace Vidly.Controllers
 			if (customerId == null)
 				return Content("Please include a CustomerId in the URL");
 
-			var customer = db.Customers.SingleOrDefault(c => c.Id == customerId);
+			var customer = db.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == customerId);
 
 			if (customer == null)
 				return HttpNotFound();
