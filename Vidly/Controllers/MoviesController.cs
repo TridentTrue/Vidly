@@ -6,11 +6,36 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using AutoMapper;
 
 namespace Vidly.Controllers
 {
 	public class MoviesController : BaseController
 	{
+		public ActionResult Index(int? pageIndex, string sortBy)
+		{
+			if (!pageIndex.HasValue)
+				pageIndex = 1;
+
+			if (string.IsNullOrWhiteSpace(sortBy))
+				sortBy = "Name";
+
+			return View(db.Movies.Include(m => m.Genre).ToList());
+		}
+
+		public ActionResult Details(int? id)
+		{
+			if (id == null)
+				return Content("Please include a MovieId in the URL");
+
+			var movie = db.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id);
+
+			if (movie == null)
+				return HttpNotFound();
+
+			return View(movie);
+		}
+
 		// GET: Movies/Random
 		public ActionResult Random()
 		{
@@ -36,34 +61,45 @@ namespace Vidly.Controllers
 			return Content(year + "/" + month);
 		}
 
-		public ActionResult Edit(int id)
+		public ActionResult New()
 		{
-			return Content("id = " + id);
+			var vm = new MovieFormViewModel()
+			{
+				Genres = db.Genres.ToList(),
+			};
+
+			return View("MovieForm", vm);
 		}
 
-		public ActionResult Index(int? pageIndex, string sortBy)
+		public ActionResult Edit(int? id)
 		{
-			if (!pageIndex.HasValue)
-				pageIndex = 1;
+			if (id == null)
+				return Content("Please include a MovieId in the URL");
 
-			if (string.IsNullOrWhiteSpace(sortBy))
-				sortBy = "Name";
-
-			return View(db.Movies.Include(m => m.Genre).ToList());
-		}
-
-		[Route("movies/details/{movieId?}")]
-		public ActionResult Details(int? movieId)
-		{
-			if (movieId == null)
-				return Content("Please include a movieId in the URL");
-
-			var movie = db.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == movieId);
+			var movie = db.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id);
 
 			if (movie == null)
 				return HttpNotFound();
 
-			return View(movie);
+			return View("MovieForm", Mapper.Map<Movie, MovieFormViewModel>(movie));
+		}
+
+		[HttpPost]
+		public ActionResult Save(Movie movie)
+		{
+			if (!ModelState.IsValid)
+				return View("MovieForm", Mapper.Map<Movie, MovieFormViewModel>(movie));
+
+			if (movie.Id == 0)
+				db.Movies.Add(movie);
+			else
+			{
+				db.Movies.Attach(movie);
+				db.Entry(movie).State = EntityState.Modified;
+			}
+
+			db.SaveChanges();
+			return RedirectToAction("Index");
 		}
 	}
 }

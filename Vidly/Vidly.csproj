@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.6.4\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
     </Reference>
@@ -78,6 +81,10 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -188,6 +195,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -240,10 +248,27 @@
     <Compile Include="Migrations\201807292133446_AdditionalMovieProperties.Designer.cs">
       <DependentUpon>201807292133446_AdditionalMovieProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301955357_AddMembershipTypesToContext.cs" />
+    <Compile Include="Migrations\201807301955357_AddMembershipTypesToContext.Designer.cs">
+      <DependentUpon>201807301955357_AddMembershipTypesToContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807302050448_RemoveCustomer_Discriminator.cs" />
+    <Compile Include="Migrations\201807302050448_RemoveCustomer_Discriminator.Designer.cs">
+      <DependentUpon>201807302050448_RemoveCustomer_Discriminator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807302142146_AddDiscriminator.cs" />
+    <Compile Include="Migrations\201807302142146_AddDiscriminator.Designer.cs">
+      <DependentUpon>201807302142146_AddDiscriminator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807302217173_AddDataAnnotationsToCustomerAndMovieModels.cs" />
+    <Compile Include="Migrations\201807302217173_AddDataAnnotationsToCustomerAndMovieModels.Designer.cs">
+      <DependentUpon>201807302217173_AddDataAnnotationsToCustomerAndMovieModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
-    <Compile Include="ViewModels\RandomMovieViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModels.cs" />
+    <Compile Include="ViewModels\MovieViewModels.cs" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -272,6 +297,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\all.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -359,6 +385,8 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -410,6 +438,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807292133446_AdditionalMovieProperties.resx">
       <DependentUpon>201807292133446_AdditionalMovieProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301955357_AddMembershipTypesToContext.resx">
+      <DependentUpon>201807301955357_AddMembershipTypesToContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807302050448_RemoveCustomer_Discriminator.resx">
+      <DependentUpon>201807302050448_RemoveCustomer_Discriminator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807302142146_AddDiscriminator.resx">
+      <DependentUpon>201807302142146_AddDiscriminator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807302217173_AddDataAnnotationsToCustomerAndMovieModels.resx">
+      <DependentUpon>201807302217173_AddDataAnnotationsToCustomerAndMovieModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
